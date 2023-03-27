@@ -28,6 +28,8 @@ We have three links now,
 •	Localhost:3000 to run the app
 •	Localhost: 9464/metrics to see the metrics
 •	Localhost:9090 to see the Prometheus’s visualization for the metrics. 
+•	Also run premetheus.exe inside the premetheus folder. Tou can run it by doing ./premetheus.exe  .... this file couldn't be uploaded here or to sakai so just download it and change it to the yaml inside the premetheus folder posted here 
+
 Now we use counters and cpu_util to see the visualization: 
 We add, select and remove items to test: 
        
