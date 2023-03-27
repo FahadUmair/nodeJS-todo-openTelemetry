@@ -1,3 +1,5 @@
+<h1> READ "Explanation.pdf". There's no need to read all this</h1>
+
 About the App:
 The app is written in Node.js and it is a simple todo app where you can add items, select, and remove then after you are done that item. The source code was taken from: https://github.com/missating/nodejs-todo
 To run the app, simple type “node index.js”
