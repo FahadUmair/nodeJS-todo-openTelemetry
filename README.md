@@ -1,28 +1,48 @@
-# nodejs-todo
+About the App:
+The app is written in Node.js and it is a simple todo app where you can add items, select, and remove then after you are done that item. The source code was taken from: https://github.com/missating/nodejs-todo
+To run the app, simple type “node index.js”
+To see the tracing, type “node --require ./tracing.js index.js”
+To see the metrics, type “node --require ./instrumentation.js index.js”
 
-<h2> A simple To Do List application built with Node.js and Express</h2>
+Instrumenting with OpenTelemetry: 
+Tracing:
+Each of the important functions have a tracer connected to them:
+•	Page load has tracer connected to it.
+•	Adding an item has a tracer with it.
+•	Selecting an item has a tracer with it.
+•	Removing an item has a tracer with it.
+Now run the app with tracing which is 
+node --require ./tracing.js index.js
+The page loads at localhost:3000
+Let’s load the page, add an item, then select and then remove it: 
+Now go to localhost:16686 to see jaeger’s visualization
+This is what you’ll see there: 
+ 
+This clearly shows the traces of all the important functions of the app.
+Metrics:
+Now we use metrics to see the CPU utilization, counters, etc.
+Run the app with this command:
+node --require ./instrumentation.js index.js
+Now, you need to have Prometheus installed in order to see this, 
+We have three links now,
+•	Localhost:3000 to run the app
+•	Localhost: 9464/metrics to see the metrics
+•	Localhost:9090 to see the Prometheus’s visualization for the metrics. 
+Now we use counters and cpu_util to see the visualization: 
+We add, select and remove items to test: 
+       
+Item added “grocery”		            Item selected “practice with nodejs”               Remove button clicked
 
-<p> Nodejs application that let's you add and complete task on a single page, storing both new and completed task in a different array. This appllication makes use of: </p>
+Now let’s go to Localhost: 9464/metrics to see the metrics:
+ 
+These are the counters working just fine.
 
-<ul>
-<li> EJS - A simple templating engine that lets you generate HTML markup with plain JS </li>
+Let’s look at one of the counters on Prometheus (we added 4 items):
+ 
+So, we see the counter is at 4.
+Now let’s look at the CPU utilization:
+ 
+We see that adding, and removing creates a little spike in the utilization.
+We can see all the other metrics in the same way as well.
 
-<li> Body-parser - This extracts the entire body portion of an incoming request stream and exposes it on req.body </li>
-</ul>
-
-![png](https://github.com/missating/nodejs-todo/blob/master/todo.png?raw=true 'web todo')
-
-<br>
-
-<p> How to run the app locally: </p>
-
-<ol>
-<li> Run <code> npm install </code> to install all needed dependencies </li>
-
-<li> Then start the server using <code> node index.js </code> </li>
-
-<li> Navigate to your browser <code> http://localhost:3000/ </code> to view the app </li>
-</ol>
-
-<p> I wrote a blog post on how to build this app, you can check it out <a href="https://medium.com/@atingenkay/creating-a-todo-app-with-node-js-express-8fa51f39b16f" target="_blank">Here</a>
 
